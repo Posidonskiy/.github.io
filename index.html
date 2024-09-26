@@ -47,24 +47,6 @@
         .tab-content {
             margin-top: 20px;
         }
-        /* Стили для мини логотипа */
-        .pixel-art {
-            display: grid;
-            grid-template-columns: repeat(8, 10px); /* 8 пикселей по ширине */
-            margin: 0 auto; /* Центрирование логотипа */
-            margin-bottom: 20px; /* Отступ снизу */
-        }
-        .pixel {
-            width: 10px;
-            height: 10px;
-        }
-        .bg-black { background-color: black; }
-        .bg-white { background-color: white; }
-        .bg-brown { background-color: #8B4513; }
-        .bg-blue { background-color: #0000FF; }
-        .bg-red { background-color: #FF0000; }
-        .bg-yellow { background-color: #FFFF00; }
-        .bg-skin { background-color: #F2C94C; } /* Цвет кожи */
     </style>
 </head>
 <body>
@@ -72,56 +54,6 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 px-lg-4 order-1 text-center text-lg-left mt-5 mt-lg-0">
                 <h2 class="title">Влад Рейзов</h2>
-
-                <!-- Мини логотип -->
-                <div class="pixel-art">
-                    <!-- Шапка -->
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-                    <div class="pixel bg-blue"></div>
-
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-skin"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-brown"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                    <div class="pixel bg-black"></div>
-                </div>
-
                 <p class="description">Разработчик Сайтов-Плагинов 17 лет<br><br>
                 <div class="cmd">
                     <a href="https://vk.com/donsk1y" target="_blank" style="text-decoration: none;">
@@ -172,47 +104,58 @@
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">Фамилия</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="zaz-tab" data-toggle="tab" href="#zaz" role="tab" aria-controls="zaz" aria-selected="false">Зазыва</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="p-tab" data-toggle="tab" href="#p" role="tab" aria-controls="p" aria-selected="false">Список Плагинов</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="m-tab" data-toggle="tab" href="#m" role="tab" aria-controls="m" aria-selected="false">Связь</a>
+                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+
+        <!-- Содержимое вкладок -->
+        <div class="tab-content mt-4" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p class="description">На этом сайте вы сможете найти меня, узнать чем я занимаюсь и задать мне любые вопросы!</p>
-            </div>
-            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
-                <p class="description">Фамилия - Рейзов, я программист и разработчик.</p>
-            </div>
-            <div class="tab-pane fade" id="zaz" role="tabpanel" aria-labelledby="zaz-tab">
-                <p class="description">Зазыва - Влад.</p>
-            </div>
-            <div class="tab-pane fade" id="p" role="tabpanel" aria-labelledby="p-tab">
-                <p class="description">Список моих плагинов:</p>
+                <h3 class="title mt-3">Добро пожаловать!</h3>
+                <p>Здесь будет основная информация.</p>
+                <h4 class="mt-4">Мои плагины:</h4>
                 <ul>
-                    <li>PAdminPass</li>
-                    <li>PCheck</li>
-                    <li>PAntiHitbox</li>
-                    <li>PShulkerOpen</li>
-                    <li>PCasino</li>
+                    <li>PCaptcha</li>
                     <li>PGenetic</li>
-                    <li>POptimazer</li>
+                    <li>PSite</li>
+                    <li>PSiteCaptcha</li>
+                    <li>PCasino</li>
+                    <li>PAPI</li>
+                    <li>Pjump</li>
+                    <li>PFixAC</li>
+                    <li>PAntiCheat</li>
+                    <li>PshulkerOpen</li>
+                    <li>Pantigondoni</li>
+                    <li>PfixDumped</li>
                 </ul>
             </div>
-            <div class="tab-pane fade" id="m" role="tabpanel" aria-labelledby="m-tab">
-                <p class="description">Свяжитесь со мной через ВКонтакте или Telegram.</p>
+            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
+                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
+                <ul class="list-unstyled">
+                    <li>minepaxaxel</li>
+                    <li>eternalown</li>
+                    <li>stuqad</li>
+                    <li>ramanov</li>
+                    <li>phantom</li>
+                </ul>
             </div>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const typed = new Typed('.console-content', {
+            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*'],
+            showCursor: false,
+            typeSpeed: 20,
+            backSpeed: 5,
+            startDelay: 400,
+            backDelay: 2000,
+            loop: true,
+            loopCount: Infinity
+        });
+    </script>
 </body>
 </html>
