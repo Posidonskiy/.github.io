@@ -98,25 +98,50 @@
             </div>
         </div>
 
-        <!-- Вкладка Контакты и FAME -->
-        <div class="tab-content">
-            <h3 class="title">Контакты</h3>
-            <p class="description">Свяжитесь со мной через социальные сети или просто напишите!</p>
-            <h3 class="title">FAME - Клан Eternal Cartel</h3>
-            <ul class="list-unstyled">
-                <li>minepaxaxel</li>
-                <li>eternalown</li>
-                <li>stuqad</li>
-                <li>ramanov</li>
-                <li>phantom</li>
-            </ul>
+        <!-- Вкладки -->
+        <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="true">Контакты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <h3 class="title mt-3">Свяжитесь со мной</h3>
+                <p class="description">Вы можете написать мне через социальные сети:</p>
+                <div class="cmd">
+                    <a href="https://vk.com/donsk1y" target="_blank" style="text-decoration: none;">
+                        Написать во ВКонтакте <i class="uil uil-vk"></i>
+                    </a>
+                </div>
+                <div class="cmd">
+                    <a href="https://t.me/organizarionTerr" target="_blank" style="text-decoration: none;">
+                        Написать в Telegram <i class="uil uil-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
+                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
+                <ul class="list-unstyled">
+                    <li>minepaxaxel</li>
+                    <li>eternalown</li>
+                    <li>stuqad</li>
+                    <li>ramanov</li>
+                    <li>phantom</li>
+                </ul>
+            </div>
         </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const typed = new Typed('.console-content', {
-            strings: ['hello@donskiy ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*'],
+            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*'],
             showCursor: false,
             typeSpeed: 20,
             backSpeed: 5,
