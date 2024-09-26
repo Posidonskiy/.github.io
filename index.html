@@ -47,12 +47,6 @@
         .tab-content {
             margin-top: 20px;
         }
-        .plugin-logo {
-            font-size: 24px; /* Размер шрифта для логотипа */
-            color: red; /* Цвет текста */
-            text-align: right; /* Выравнивание текста вправо */
-            margin: 20px 0; /* Отступы сверху и снизу */
-        }
     </style>
 </head>
 <body>
@@ -103,9 +97,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Логотип с текстом "Плагины" -->
-        <div class="plugin-logo">Плагины</div>
 
         <!-- Навигация вкладок -->
         <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
@@ -158,10 +149,12 @@
         const typed = new Typed('.console-content', {
             strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*'],
             showCursor: false,
-            typeSpeed: 50,
-            backSpeed: 25,
-            backDelay: 1500,
+            typeSpeed: 20,
+            backSpeed: 5,
+            startDelay: 400,
+            backDelay: 2000,
             loop: true,
+            loopCount: Infinity
         });
     </script>
 </body>
