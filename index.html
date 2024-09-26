@@ -47,6 +47,9 @@
         .tab-content {
             margin-top: 20px;
         }
+        .input-group {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -93,6 +96,12 @@
                     </div>
                     <div class="card-body">
                         <span class="console-content"></span>
+                        <div class="input-group">
+                            <input type="text" id="commandInput" class="form-control" placeholder="Введите команду" aria-label="Введите команду">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" onclick="executeCommand()">Отправить</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,11 +160,18 @@
             showCursor: false,
             typeSpeed: 20,
             backSpeed: 5,
-            startDelay: 400,
-            backDelay: 2000,
-            loop: true,
-            loopCount: Infinity
+            startDelay: 1500,
+            loop: true
         });
+
+        function executeCommand() {
+            const commandInput = document.getElementById('commandInput');
+            const command = commandInput.value;
+            if (command) {
+                document.querySelector('.console-content').innerHTML += `<div>${command}</div>`;
+                commandInput.value = ''; // Очистить поле ввода
+            }
+        }
     </script>
 </body>
 </html>
