@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<html lang="ru">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <title>Влад Рейзов</title>
     <link rel="shortcut icon" href="files/x3.png" type="image/png">
     <meta name="description" content="Приветствую тебя, дорогой друг! Меня зовут Влад. Данный сайт сделан в виде визитки, проще говоря с информацией с которой вы сможете со мной связаться!">
@@ -98,16 +98,32 @@
             </div>
         </div>
 
-        <!-- Вкладка FAME -->
-        <div class="tab-content mt-4">
-            <h3 class="title mt-3">Список FAME и Клана Eternal Cartel</h3>
-            <ul class="list-unstyled">
-                <li>minepaxaxel</li>
-                <li>eternalown</li>
-                <li>stuqad</li>
-                <li>ramanov</li>
-                <li>phantom</li>
-            </ul>
+        <!-- Навигация вкладок -->
+        <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
+            </li>
+        </ul>
+
+        <!-- Содержимое вкладок -->
+        <div class="tab-content mt-4" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="title mt-3">Добро пожаловать!</h3>
+                <p>Здесь будет основная информация.</p>
+            </div>
+            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
+                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
+                <ul class="list-unstyled">
+                    <li>minepaxaxel</li>
+                    <li>eternalown</li>
+                    <li>stuqad</li>
+                    <li>ramanov</li>
+                    <li>phantom</li>
+                </ul>
+            </div>
         </div>
     </div>
     
