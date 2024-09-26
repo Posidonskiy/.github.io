@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="files/page.css">
     <style>
         body {
-            background-color: #000000;
-            color: white;
+            background-color: #000000; /* Заменен фон на черный */
+            color: white; /* Текст сделан белым для контраста */
         }
         .cmd {
             padding: .5rem 1rem;
-            background-color: #333333;
+            background-color: #333333; /* Темно-серый для контраста */
             color: white;
             font-family: consolas;
             margin: 0 15px 15px 0;
@@ -34,12 +34,12 @@
             background-color: #1c1c1c;
             border-color: #444444;
             position: relative;
+            overflow: hidden;
         }
         .card-body {
-            height: 200px;
+            max-height: 300px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column-reverse; /* Перемещаем контент вниз */
+            padding: 1rem;
         }
         .card-header i {
             background-color: #ff5f56;
@@ -53,12 +53,11 @@
         }
         .input-group {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            right: 10px;
+            bottom: 0;
+            width: 100%;
         }
-        .console-content {
-            margin-bottom: 50px;
+        .input-group input {
+            flex: 1;
         }
     </style>
 </head>
@@ -83,7 +82,7 @@
                 <source type="audio/mp3" src="files/donskiy.mp3">
             </audio>
             <script type="text/javascript">
-                var audio = document.getElementById("audio");
+                var audio = document.getElementById("audio"); 
                 function q() { window.open('https://vk.com/organizarionTerr') }
                 function pVid() { audio.paused ? audio.play() : audio.pause(); }
                 document.onkeydown = function(e) {
@@ -105,45 +104,98 @@
                         <i class="green" onclick="pVid()"></i>
                     </div>
                     <div class="card-body">
-                        <div class="console-content"></div>
+                        <span class="console-content"></span>
                     </div>
                     <div class="input-group">
-                        <input type="text" id="commandInput" class="form-control" placeholder="Введите команду" aria-label="Введите команду">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" onclick="executeCommand()">Отправить</button>
-                        </div>
+                        <input type="text" id="commandInput" placeholder="Введите команду..." onkeydown="if(event.key === 'Enter') sendCommand()">
+                        <button class="btn btn-primary" onclick="sendCommand()">Отправить</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Навигация вкладок -->
+        <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
+            </li>
+        </ul>
+
+        <!-- Содержимое вкладок -->
+        <div class="tab-content mt-4" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="title mt-3">Добро пожаловать!</h3>
+                <p>Здесь будет основная информация.</p>
+                <h4 class="mt-4">Мои плагины:</h4>
+                <ul>
+                    <li>PCaptcha</li>
+                    <li>PGenetic</li>
+                    <li>PSite</li>
+                    <li>PSiteCaptcha</li>
+                    <li>PCasino</li>
+                    <li>PAPI</li>
+                    <li>Pjump</li>
+                    <li>PFixAC</li>
+                    <li>PAntiCheat</li>
+                    <li>PshulkerOpen</li>
+                    <li>Pantigondoni</li>
+                    <li>PfixDumped</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
+                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
+                <ul class="list-unstyled">
+                    <li>minepaxaxel</li>
+                    <li>eternalown</li>
+                    <li>stuqad</li>
+                    <li>ramanov</li>
+                    <li>phantom</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const responses = {
-            'привет': 'Привет! Как могу помочь?',
+        const typed = new Typed('.console-content', {
+            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*^1000 <br><span class="text-danger">Permission denied</span>^1000 <br><br> hello@vm1000 ~ #', 'login...'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            cursorChar: '|',
+            onComplete: (self) => { self.cursor.remove(); },
+        });
+
+        const predefinedResponses = {
+            'привет': 'Привет! Как дела?',
             'как дела': 'Все отлично, спасибо!',
-            'пока': 'До встречи!',
-            'что ты умеешь': 'Я могу показывать сообщения и выполнять команды.'
+            // Добавьте сюда другие слова и ответы
         };
 
-        function executeCommand() {
-            const commandInput = document.getElementById('commandInput');
-            const command = commandInput.value.toLowerCase();
+        function sendCommand() {
+            const input = document.getElementById('commandInput');
+            const command = input.value;
             const consoleContent = document.querySelector('.console-content');
 
             if (command) {
-                consoleContent.innerHTML = `<div>${command}</div>` + consoleContent.innerHTML;
+                // Добавляем команду в консоль
+                consoleContent.innerHTML += `<div>${command}</div>`;
+                input.value = '';
 
-                if (responses[command]) {
-                    setTimeout(() => {
-                        consoleContent.innerHTML = `<div>${responses[command]}</div>` + consoleContent.innerHTML;
-                    }, 1000); // Ответ через 1 секунду для реалистичности
+                // Проверка на предопределенные ответы
+                if (predefinedResponses[command.toLowerCase()]) {
+                    const response = predefinedResponses[command.toLowerCase()];
+                    consoleContent.innerHTML += `<div>${response}</div>`;
                 }
 
-                commandInput.value = ''; // Очистить поле ввода
+                // Прокрутка вниз к последним сообщениям
+                const cardBody = document.querySelector('.card-body');
+                cardBody.scrollTop = cardBody.scrollHeight;
             }
         }
     </script>
