@@ -122,24 +122,6 @@
                 function y() { window.open('https://vk.com/donsk1y') }
                 document.oncontextmenu = cmenu;
                 function cmenu() { return false; }
-            </script>
-            <div class="col-lg-6 px-lg-3 order-2 mb-5 mb-lg-0">
-                <div class="card console">
-                    <div class="card-header">
-                        <i class="red" onclick="y()"></i>
-                        <i class="yellow" onclick="q()"></i>
-                        <i class="green" onclick="pVid()"></i>
-                    </div>
-                    <div class="card-body">
-                        <span class="console-content"></span>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="commandInput" placeholder="Введите команду..." onkeydown="if(event.key === 'Enter') sendCommand()">
-                        <button class="btn btn-primary" onclick="sendCommand()">Отправить</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Навигация вкладок -->
         <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
@@ -206,8 +188,6 @@
                 drop.remove();
             });
         }
-
-        // Генерация капель дождя
         setInterval(createRainDrop, 100); // Каждые 100 миллисекунд
     </script>
  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
