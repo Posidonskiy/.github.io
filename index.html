@@ -59,26 +59,6 @@
         .input-group input {
             flex: 1;
         }
-
-        /* Дождь */
-        .rain {
-            position: absolute;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Чтобы дождь не мешал кликам */
-            overflow: hidden;
-        }
-
-        .drop {
-            position: absolute;
-            bottom: 100%;
-            width: 2px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.6);
-            animation: fall linear infinite;
-        }
     </style>
 </head>
 <body>
@@ -177,31 +157,6 @@
             </div>
         </div>
     </div>
- <!-- Дождь -->
-    <div class="rain" id="rainContainer"></div>
-
-    <script>
-        // Функция для создания капель дождя
-        function createRainDrop() {
-            const rainContainer = document.getElementById('rainContainer');
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-
-            // Случайное положение для капли
-            drop.style.left = Math.random() * 100 + 'vw';
-            drop.style.animationDuration = Math.random() * 1 + 0.5 + 's'; // Случайная скорость падения
-            drop.style.opacity = Math.random(); // Случайная прозрачность
-
-            rainContainer.appendChild(drop);
-
-            // Удаление капли после окончания анимации
-            drop.addEventListener('animationend', () => {
-                drop.remove();
-            });
-        }
-
-        // Генерация капель дождя
-        setInterval(createRainDrop, 100); // Каждые 100 миллисекунд
     
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
