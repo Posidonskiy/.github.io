@@ -1,234 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <title>Влад Рейзов</title>
-    <link rel="shortcut icon" href="files/x3.png" type="image/png">
-    <meta name="description" content="Приветствую тебя, дорогой друг! Меня зовут Donskiy. Данный сайт сделан в виде визитки, проще говоря с информацией с которой вы сможете со мной связаться!">
-    <meta name="keywords" content="влад, влад, рейзов, фастдб, пхп, бдв, кингдон, хетзнер, пнгонисунчик, азур, blazingfast, блейзингфаст, дельтон, дельтонклауд">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Консольный интерфейс</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.0/css/line.css">
-    <link rel="stylesheet" href="files/page.css">
     <style>
         body {
-            background-color: #000000; /* Заменен фон на черный */
-            color: white; /* Текст сделан белым для контраста */
+            background-color: #f8f9fa;
         }
-        .cmd {
-            padding: .5rem 1rem;
-            background-color: #333333; /* Темно-серый для контраста */
+        .console {
+            background-color: black;
             color: white;
-            font-family: consolas;
-            margin: 0 15px 15px 0;
-            text-align: center;
-        }
-        .title {
-            color: #ffffff;
-        }
-        .description {
-            color: #dddddd;
-        }
-        .card.console {
-            background-color: #1c1c1c;
-            border-color: #444444;
-            position: relative;
-            overflow: hidden;
-        }
-        .card-body {
-            max-height: 300px;
+            padding: 20px;
+            border-radius: 5px;
+            height: 300px;
             overflow-y: auto;
-            padding: 1rem;
+            font-family: monospace;
         }
-        .card-header i {
-            background-color: #ff5f56;
-            margin-right: 5px;
-        }
-        .card-header i.yellow {
-            background-color: #ffbd2e;
-        }
-        .card-header i.green {
-            background-color: #27c93f;
-        }
-        .input-group {
+        .drop {
             position: absolute;
-            bottom: 0;
-            width: 100%;
+            width: 2px;
+            height: 10px;
+            background: blue;
+            opacity: 0.7;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
         }
-        .input-group input {
-            flex: 1;
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
-        /* Стиль для дождевых капель */
-        .rain {
-            position: fixed;
+        #rainContainer {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none; /* Чтобы не мешать взаимодействию с другими элементами */
             overflow: hidden;
-            z-index: -1; /* На заднем плане */
-        }
-        .drop {
-            position: absolute;
-            top: -10px; /* Начальная позиция капли выше экрана */
-            width: 2px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh); /* Капля падает вниз */
-            }
+            pointer-events: none;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="rain" id="rainContainer"></div> <!-- Дождь -->
 
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 px-lg-4 order-1 text-center text-lg-left mt-5 mt-lg-0">
-                <h2 class="title">Donskiy</h2>
-                <p class="description">Разработчик Сайтов-Плагинов 17 лет<br><br>
-                <div class="cmd">
-                    <a href="https://vk.com/donsk1y" target="_blank" style="text-decoration: none;">
-                        &nbsp;&nbsp;&nbsp;<span>Написать во ВКонтакте</span> <i class="uil uil-vk"></i>
-                    </a>&nbsp;&nbsp;&nbsp;
-                </div>
-                <div class="cmd">
-                    <a href="https://t.me/organizarionTerr" target="_blank" style="text-decoration: none;">
-                        <i class="uil uil-telegram"></i>
-                    </a>
-                </div>
-            </div>
-            <audio id="audio" preload="" loop="loop" onloadstart="this.volume=1.0">
-                <source type="audio/mp3" src="files/donskiy.mp3">
-            </audio>
-            <script type="text/javascript">
-                var audio = document.getElementById("audio"); 
-                function q() { window.open('https://vk.com/organizarionTerr') }
-                function pVid() { audio.paused ? audio.play() : audio.pause(); }
-                document.onkeydown = function(e) {
-                    if (event.keyCode == 123) { return false; }
-                    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
-                    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
-                    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
-                    if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
-                };
-                function y() { window.open('https://vk.com/donsk1y') }
-                document.oncontextmenu = cmenu;
-                function cmenu() { return false; }
-            </script>
-            <div class="col-lg-6 px-lg-3 order-2 mb-5 mb-lg-0">
-                <div class="card console">
-                    <div class="card-header">
-                        <i class="red" onclick="y()"></i>
-                        <i class="yellow" onclick="q()"></i>
-                        <i class="green" onclick="pVid()"></i>
-                    </div>
-                    <div class="card-body">
-                        <span class="console-content"></span>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" id="commandInput" placeholder="Введите команду..." onkeydown="if(event.key === 'Enter') sendCommand()">
-                        <button class="btn btn-primary" onclick="sendCommand()">Отправить</button>
-                    </div>
-                </div>
-            </div>
+    <div id="rainContainer"></div>
+    <div class="container mt-5">
+        <h1>Консольный интерфейс</h1>
+        <div class="console" id="console">
+            <div class="console-content"></div>
         </div>
-
-        <!-- Навигация вкладок -->
-        <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
-            </li>
-        </ul>
-
-        <!-- Содержимое вкладок -->
-        <div class="tab-content mt-4" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <h3 class="title mt-3">Добро пожаловать!</h3>
-                <p>Здесь будет основная информация.</p>
-                <h4 class="mt-4">Мои плагины:</h4>
-                <ul>
-                    <li>PCaptcha</li>
-                    <li>PGenetic</li>
-                    <li>PSite</li>
-                    <li>PSiteCaptcha</li>
-                    <li>PCasino</li>
-                    <li>PAPI</li>
-                    <li>Pjump</li>
-                    <li>PFixAC</li>
-                    <li>PAntiCheat</li>
-                    <li>PshulkerOpen</li>
-                    <li>Pantigondoni</li>
-                    <li>PfixDumped</li>
-                </ul>
-            </div>
-            <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
-                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
-                <ul class="list-unstyled">
-                    <li>minepaxaxel</li>
-                    <li>eternalown</li>
-                    <li>stuqad</li>
-                    <li>ramanov</li>
-                </ul>
-            </div>
-        </div>
+        <input type="text" id="commandInput" class="form-control mt-3" placeholder="Введите команду" onkeypress="if(event.key === 'Enter') sendCommand()">
     </div>
 
-    <!-- Подключение библиотек -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Функция для генерации дождевых капель
-        function createRain() {
-            const rainContainer = document.getElementById('rainContainer');
-            for (let i = 0; i < 100; i++) {
-                const drop = document.createElement('div');
-                drop.classList.add('drop');
-                drop.style.left = Math.random() * 100 + 'vw'; // случайная позиция по ширине экрана
-                drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's'; // случайная длительность падения
-                rainContainer.appendChild(drop);
+        const typed = new Typed('.console-content', {
+            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*^1000 <br><span class="text-danger">Permission denied</span>^1000 <br><br> hello@vm1000 ~ #', 'login...'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            cursorChar: '|',
+            onComplete: (self) => { self.cursor.remove(); },
+        });
 
-                // Удаляем каплю после завершения анимации
-                drop.addEventListener('animationend', () => {
-                    drop.remove();
-                });
+        const predefinedResponses = {
+            'привет': 'Привет! Как дела?',
+            'как дела': 'Все отлично, спасибо!',
+            // Добавьте сюда другие слова и ответы
+        };
+
+        function sendCommand() {
+            const input = document.getElementById('commandInput');
+            const command = input.value;
+            const consoleContent = document.querySelector('.console-content');
+
+            if (command) {
+                // Добавляем команду в консоль
+                consoleContent.innerHTML += `<div>${command}</div>`;
+                input.value = '';
+
+                // Проверка на предопределенные ответы
+                if (predefinedResponses[command.toLowerCase()]) {
+                    const response = predefinedResponses[command.toLowerCase()];
+                    consoleContent.innerHTML += `<div>${response}</div>`;
+                }
+
+                // Прокрутка вниз к последним сообщениям
+                const cardBody = document.querySelector('.console');
+                cardBody.scrollTop = cardBody.scrollHeight;
             }
         }
 
-        // Генерация дождя каждые 100ms
-        setInterval(createRain, 100);
-
-        // Обработчик для отправки команды
-        function sendCommand() {
-            const input = document.getElementById("commandInput");
-            const command = input.value;
-            const consoleContent = document.querySelector(".console-content");
-            consoleContent.innerHTML += `<div>${command}</div>`;
-            input.value = ""; // Очистка поля ввода
-            consoleContent.scrollTop = consoleContent.scrollHeight; // Прокрутка вниз
-
-            // Добавление анимации Typed.js
-            const typed = new Typed('.console-content', {
-                strings: [
-                    'hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*^1000 <br><span class="text-danger">Permission denied</span>^1000 <br><br> hello@vm1000 ~ #',
-                    'login...'
-                ],
-                typeSpeed: 50,
-                backSpeed: 25,
-                backDelay: 1000,
-                loop: true
-            });
+        // Функция для генерации дождевых капель
+        function generateRain() {
+            const rainContainer = document.getElementById("rainContainer");
+            for (let i = 0; i < 100; i++) { // Количество капель
+                const drop = document.createElement("div");
+                drop.classList.add("drop");
+                drop.style.left = Math.random() * 100 + "vw"; // Случайная позиция по ширине
+                drop.style.animationDuration = Math.random() * 0.5 + 0.5 + "s"; // Случайная продолжительность падения
+                drop.style.animationDelay = Math.random() * 2 + "s"; // Случайная задержка перед падением
+                rainContainer.appendChild(drop);
+            }
         }
+        generateRain();
     </script>
 </body>
 </html>
