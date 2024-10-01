@@ -59,9 +59,35 @@
         .input-group input {
             flex: 1;
         }
+        /* Стиль для дождевых капель */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Чтобы не мешать взаимодействию с другими элементами */
+            overflow: hidden;
+            z-index: -1; /* На заднем плане */
+        }
+        .drop {
+            position: absolute;
+            top: -10px; /* Начальная позиция капли выше экрана */
+            width: 2px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh); /* Капля падает вниз */
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="rain" id="rainContainer"></div> <!-- Дождь -->
+
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 px-lg-4 order-1 text-center text-lg-left mt-5 mt-lg-0">
@@ -158,45 +184,38 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        const typed = new Typed('.console-content', {
-            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*^1000 <br><span class="text-danger">Permission denied</span>^1000 <br><br> hello@vm1000 ~ #', 'login...'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true,
-            cursorChar: '|',
-            onComplete: (self) => { self.cursor.remove(); },
-        });
+        // Функция для генерации дождевых капель
+        function createRain() {
+            const rainContainer = document.getElementById('rainContainer');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = Math.random() * 100 + 'vw'; // случайная позиция по ширине экрана
+                drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's'; // случайная длительность падения
+                rainContainer.appendChild(drop);
 
-        const predefinedResponses = {
-            'привет': 'Привет! Как дела?',
-            'как дела': 'Все отлично, спасибо!',
-            // Добавьте сюда другие слова и ответы
-        };
-
-        function sendCommand() {
-            const input = document.getElementById('commandInput');
-            const command = input.value;
-            const consoleContent = document.querySelector('.console-content');
-
-            if (command) {
-                // Добавляем команду в консоль
-                consoleContent.innerHTML += <div>${command}</div>;
-                input.value = '';
-
-                // Проверка на предопределенные ответы
-                if (predefinedResponses[command.toLowerCase()]) {
-                    const response = predefinedResponses[command.toLowerCase()];
-                    consoleContent.innerHTML += <div>${response}</div>;
-                }
-
-                // Прокрутка вниз к последним сообщениям
-                const cardBody = document.querySelector('.card-body');
-                cardBody.scrollTop = cardBody.scrollHeight;
+                // Удаляем каплю после завершения анимации
+                drop.addEventListener('animationend', () => {
+                    drop.remove();
+                });
             }
+        }
+
+        // Генерация дождя каждые 100ms
+        setInterval(createRain, 100);
+
+        // Обработчик для отправки команды
+        function sendCommand() {
+            const input = document.getElementById("commandInput");
+            const command = input.value;
+            const consoleContent = document.querySelector(".console-content");
+            consoleContent.innerHTML += `<div>${command}</div>`;
+            input.value = ""; // Очистка поля ввода
+            consoleContent.scrollTop = consoleContent.scrollHeight; // Прокрутка вниз
         }
     </script>
 </body>
