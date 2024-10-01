@@ -201,32 +201,3 @@
     </script>
 </body>
 </html>
-этот
-  <!-- Дождь -->
-    <div class="rain" id="rainContainer"></div>
-
-    <script>
-        // Функция для создания капель дождя
-        function createRainDrop() {
-            const rainContainer = document.getElementById('rainContainer');
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-
-            // Случайное положение для капли
-            drop.style.left = Math.random() * 100 + 'vw';
-            drop.style.animationDuration = Math.random() * 1 + 0.5 + 's'; // Случайная скорость падения
-            drop.style.opacity = Math.random(); // Случайная прозрачность
-
-            rainContainer.appendChild(drop);
-
-            // Удаление капли после окончания анимации
-            drop.addEventListener('animationend', () => {
-                drop.remove();
-            });
-        }
-
-        // Генерация капель дождя
-        setInterval(createRainDrop, 100); // Каждые 100 миллисекунд
-    </script>
-</body>
-</html>
