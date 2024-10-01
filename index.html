@@ -59,6 +59,9 @@
         .input-group input {
             flex: 1;
         }
+        .form-message {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -122,6 +125,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Написать разработчику</a>
+            </li>
         </ul>
 
         <!-- Содержимое вкладок -->
@@ -155,47 +161,51 @@
                     <li>phantom</li>
                 </ul>
             </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <h3 class="title mt-3">Напишите разработчику</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="userName">Ваше имя:</label>
+                        <input type="text" class="form-control" id="userName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userMessage">Сообщение:</label>
+                        <textarea class="form-control" id="userMessage" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+                <div class="form-message mt-3" id="formMessage"></div>
+            </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        const typed = new Typed('.console-content', {
-            strings: ['hello@donsk1y ~ # ssh hello@149.202.17.183 ^10 <br> <span class="text-success">Are you sure you want to continue connecting (yes/no)?</span>^1000 <br><br> login: hello^1000 <br> password: *********^10 <br><span class="text-success">Success!</span> ^2000 <br><br> hello@vm1000 ~ # apt update^1000 <br> hello@vm1000 ~ # rm -rf /*^1000 <br><span class="text-danger">Permission denied</span>^1000 <br><br> hello@vm1000 ~ #', 'login...'],
-            typeSpeed: 50,
-            backSpeed: 30,
-            loop: true,
-            cursorChar: '|',
-            onComplete: (self) => { self.cursor.remove(); },
+        // Обработка отправки формы
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Отменяем стандартное поведение формы
+            const name = document.getElementById('userName').value;
+            const message = document.getElementById('userMessage').value;
+            const formMessage = document.getElementById('formMessage');
+
+            // Здесь можно добавить код для отправки сообщения администратору (например, через AJAX)
+
+            // Отображение сообщения об успехе
+            formMessage.innerHTML = `<div class="alert alert-success">Спасибо, ${name}! Ваше сообщение отправлено.</div>`;
+
+            // Очистка формы
+            document.getElementById('userName').value = '';
+            document.getElementById('userMessage').value = '';
         });
 
-        const predefinedResponses = {
-            'привет': 'Привет! Как дела?',
-            'как дела': 'Все отлично, спасибо!',
-            // Добавьте сюда другие слова и ответы
-        };
-
         function sendCommand() {
-            const input = document.getElementById('commandInput');
-            const command = input.value;
-            const consoleContent = document.querySelector('.console-content');
-
+            const commandInput = document.getElementById("commandInput");
+            const command = commandInput.value.trim();
             if (command) {
-                // Добавляем команду в консоль
-                consoleContent.innerHTML += `<div>${command}</div>`;
-                input.value = '';
-
-                // Проверка на предопределенные ответы
-                if (predefinedResponses[command.toLowerCase()]) {
-                    const response = predefinedResponses[command.toLowerCase()];
-                    consoleContent.innerHTML += `<div>${response}</div>`;
-                }
-
-                // Прокрутка вниз к последним сообщениям
-                const cardBody = document.querySelector('.card-body');
-                cardBody.scrollTop = cardBody.scrollHeight;
+                document.querySelector('.console-content').innerHTML += `<div>${command}</div>`;
+                commandInput.value = ''; // Очищаем поле ввода
             }
         }
     </script>
