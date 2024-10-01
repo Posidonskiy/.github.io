@@ -184,13 +184,13 @@
 
             if (command) {
                 // Добавляем команду в консоль
-                consoleContent.innerHTML += <div>${command}</div>;
+                consoleContent.innerHTML += `<div>${command}</div>`;
                 input.value = '';
 
                 // Проверка на предопределенные ответы
                 if (predefinedResponses[command.toLowerCase()]) {
                     const response = predefinedResponses[command.toLowerCase()];
-                    consoleContent.innerHTML += <div>${response}</div>;
+                    consoleContent.innerHTML += `<div>${response}</div>`;
                 }
 
                 // Прокрутка вниз к последним сообщениям
