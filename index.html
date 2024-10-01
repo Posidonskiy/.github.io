@@ -15,6 +15,7 @@
         body {
             background-color: #000000; /* Заменен фон на черный */
             color: white; /* Текст сделан белым для контраста */
+            overflow: hidden; /* Отключаем прокрутку для дождя */
         }
         .cmd {
             padding: .5rem 1rem;
@@ -59,12 +60,33 @@
         .input-group input {
             flex: 1;
         }
-        .form-message {
-            margin-top: 20px;
+
+        /* Эффект дождя */
+        .rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .drop {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            width: 2px;
+            height: 15px;
+            bottom: 100%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
-<body>
+<body onload="showConfirmation();">
+    <div class="rain" id="rain"></div>
+
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 px-lg-4 order-1 text-center text-lg-left mt-5 mt-lg-0">
@@ -98,6 +120,29 @@
                 function y() { window.open('https://vk.com/donsk1y') }
                 document.oncontextmenu = cmenu;
                 function cmenu() { return false; }
+
+                // Всплывающее окно при загрузке страницы
+                function showConfirmation() {
+                    const confirmation = confirm("Вы уверены, что хотите перейти на сайт?");
+                    if (confirmation) {
+                        // Код для перехода, если нужно
+                    } else {
+                        window.location.href = "https://example.com"; // Замените на нужный адрес
+                    }
+                }
+
+                // Создание дождя
+                function createRain() {
+                    const rainContainer = document.getElementById('rain');
+                    for (let i = 0; i < 100; i++) {
+                        const drop = document.createElement('div');
+                        drop.classList.add('drop');
+                        drop.style.left = Math.random() * 100 + 'vw';
+                        drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Длительность падения
+                        rainContainer.appendChild(drop);
+                    }
+                }
+                createRain();
             </script>
             <div class="col-lg-6 px-lg-3 order-2 mb-5 mb-lg-0">
                 <div class="card console">
@@ -125,9 +170,6 @@
             <li class="nav-item">
                 <a class="nav-link" id="fame-tab" data-toggle="tab" href="#fame" role="tab" aria-controls="fame" aria-selected="false">FAME</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Написать разработчику</a>
-            </li>
         </ul>
 
         <!-- Содержимое вкладок -->
@@ -146,35 +188,13 @@
                     <li>Pjump</li>
                     <li>PFixAC</li>
                     <li>PAntiCheat</li>
-                    <li>PshulkerOpen</li>
-                    <li>Pantigondoni</li>
-                    <li>PfixDumped</li>
+                    <li>PDuplikator</li>
+                    <li>PCheck</li>
                 </ul>
             </div>
             <div class="tab-pane fade" id="fame" role="tabpanel" aria-labelledby="fame-tab">
-                <h3 class="title mt-3">Список FAME - Клан Eternal Cartel</h3>
-                <ul class="list-unstyled">
-                    <li>minepaxaxel</li>
-                    <li>eternalown</li>
-                    <li>stuqad</li>
-                    <li>ramanov</li>
-                    <li>phantom</li>
-                </ul>
-            </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <h3 class="title mt-3">Напишите разработчику</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="userName">Ваше имя:</label>
-                        <input type="text" class="form-control" id="userName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userMessage">Сообщение:</label>
-                        <textarea class="form-control" id="userMessage" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Отправить</button>
-                </form>
-                <div class="form-message mt-3" id="formMessage"></div>
+                <h3 class="title mt-3">Мой FAME</h3>
+                <p>Здесь будет информация о FAME.</p>
             </div>
         </div>
     </div>
@@ -182,32 +202,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Обработка отправки формы
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Отменяем стандартное поведение формы
-            const name = document.getElementById('userName').value;
-            const message = document.getElementById('userMessage').value;
-            const formMessage = document.getElementById('formMessage');
-
-            // Здесь можно добавить код для отправки сообщения администратору (например, через AJAX)
-
-            // Отображение сообщения об успехе
-            formMessage.innerHTML = `<div class="alert alert-success">Спасибо, ${name}! Ваше сообщение отправлено.</div>`;
-
-            // Очистка формы
-            document.getElementById('userName').value = '';
-            document.getElementById('userMessage').value = '';
-        });
-
-        function sendCommand() {
-            const commandInput = document.getElementById("commandInput");
-            const command = commandInput.value.trim();
-            if (command) {
-                document.querySelector('.console-content').innerHTML += `<div>${command}</div>`;
-                commandInput.value = ''; // Очищаем поле ввода
-            }
-        }
-    </script>
 </body>
 </html>
